@@ -8,8 +8,13 @@ from torchvision.models import resnet50
 from captum.attr import IntegratedGradients
 from captum.attr import visualization as viz
 
-# Load the ResNet50 model
-model = resnet50(pretrained=True).eval()
+# Initialize the ResNet50 model
+model = resnet50()
+
+# Load the weights from the .pth file in the repository
+weights_path = "resnet50-0676ba61.pth"
+model.load_state_dict(torch.load(weights_path))
+model.eval()
 
 # Streamlit app
 st.title("ResNet-50 Explanations with Captum")
